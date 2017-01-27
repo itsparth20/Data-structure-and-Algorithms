@@ -41,7 +41,7 @@ class Yelp(object):
                             restaurant[resName] = rat
                         break
         if sort_by_rating == True:
-            sortedByreat = sorted(restaurant.items(), key=lambda t: t[1])
+            sortedByreat = sorted(restaurant.items(), key=lambda t: t[1], reverse=True)
             print(sortedByreat)
             return sortedByreat
 
