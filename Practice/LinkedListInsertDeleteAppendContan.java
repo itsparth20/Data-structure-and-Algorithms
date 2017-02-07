@@ -103,13 +103,16 @@ class LinkedList {
   // Auxiliary Space Complexity: O(1) 
   public void insert(int value, int index){
       Node insertNode = new Node(value);
-      Node prevNode = head;
+      Node next = head;
+      Node prevNode = null;
       int itemIndex = 0;
-      while(itemIndex < index-1 && itemIndex < length){
-          prevNode = prevNode.next;
+      while(itemIndex < index && itemIndex < length){
+          prevNode = next;
+          next = next.next;
+          
           itemIndex++;
       }
-      if(itemIndex >= length-1){
+      if(itemIndex >= length){
           tail.next = insertNode;
           tail = insertNode;
           length++;
@@ -122,11 +125,12 @@ class LinkedList {
           return;
       }
       prevNode.next = insertNode;
-      insertNode.next = prevNode.next.next;
+      insertNode.next = next;
       
       length++;
       
   }
+
 
 
   // Time Complexity: O(n)
@@ -169,6 +173,31 @@ class LinkedList {
               return true;
       }
       return false;
+  }
+  
+  //Time Complexity: O(n)
+  //Auxiliary space complexity: O(1)
+  public void printForward(){
+      Node temp = head;
+      while(temp != null){
+          System.out.println(temp.value);
+          temp = temp.next;
+      }
+  }
+  
+  //Time Complexity: O(n)
+  //Auxiliary space complexity: O(1)
+  public void printBackward(){      
+      Node temp = head;
+      printReverse(temp);
+  }
+
+    private void printReverse(Node temp) {
+        if(temp == null)
+            return;
+                
+        printReverse(temp.next);
+        System.out.println(temp.value);
   }
 }
 
