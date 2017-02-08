@@ -198,7 +198,96 @@ class LinkedList {
                 
         printReverse(temp.next);
         System.out.println(temp.value);
-  }
+    }
+
+    //Time Complexity: O(n)
+    //Auxiliary space complexity: O(1)
+    public void reverse(){
+        Node prev = null;
+        Node current = head;
+        Node next = head.next;
+        
+        while(next!=null){
+            current.next = prev;
+            prev = current;
+            current = next;
+            next = current.next;
+        }
+        current.next = prev;
+        head = current;
+        printForward();
+    } 
+    
+    //Time Complexity: O(n)
+    //Auxiliary space complexity: O(1)
+    public void swap2Number(int no1,int no2){
+        
+        if(no1 == no2)
+            return;
+        
+        Node prevNo1Node = null;
+        Node no1Node = head;
+        Node prevNo2Node = null;
+        Node no2Node = head;
+        Node temp = head;
+        boolean no1Match = false;
+        boolean no2Match = false;
+        while(temp!=null){
+            if(no1Match == false){
+                if(no1Node.value == no1){
+                    no1Match = true;
+                    
+                }
+                else{
+                    prevNo1Node = no1Node;
+                    no1Node = no1Node.next;
+                }
+            }
+            if(no2Match == false){
+                if(no2Node.value == no2){
+                    no2Match = true;
+                }
+                else{
+                    prevNo2Node = no2Node;
+                    no2Node = no2Node.next;
+                }
+            }
+            temp = temp.next;
+        }
+        
+        if(prevNo1Node != null){
+            prevNo1Node.next = no2Node;
+        }else{
+            head = no2Node;
+        }
+        
+        if(prevNo2Node != null){
+            prevNo2Node.next = no1Node;
+        }else{
+            head = prevNo1Node;
+        }
+                        
+        Node temporary  = no1Node.next;        
+        no1Node.next = no2Node.next;
+        no2Node.next = temporary;
+        
+        printForward();
+    }
+    
+    public boolean cycle(){
+        Node slow = head;
+        Node fast = head;
+        
+        while(fast!=null && slow != null){
+            fast = fast.next.next;
+            slow = slow.next;
+            
+            if(fast == slow)
+                return true;
+        }
+        
+        return false;
+    }
 }
 
 
