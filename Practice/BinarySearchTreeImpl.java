@@ -62,7 +62,16 @@ import java.util.*;
 *             What are the time and auxilliary space complexities of the
 *             various methods?
 *
+*
+*  Extra:     Remove method for BinarySearchTree class
+*
+*  Prompt:    Add the following public method to the BinarySearchTree class:
+*
+*                  remove:   A method that removes a value matching the input
+*                            the tree is then retied so that the binary search
+*                            tree order is not violated.
 */
+
 
 class Node {
     public Node leftChild;
@@ -79,7 +88,9 @@ class Node {
 class BinarySearchTree {
     public Node root;
     public int size;
-  public BinarySearchTree(){
+    private static Stack st;
+    private static boolean validBST;
+    public BinarySearchTree(){
       root = null;
       size = 0;
   }
@@ -133,8 +144,41 @@ class BinarySearchTree {
     }
     return false;
   }
+  
+  public boolean validateBST(){
+      st = new Stack();
+      Node temp = root;
+      validBST = true;
+      inOrderTraversal(temp);
+      return validBST;
+  }
+
+    private void inOrderTraversal(Node temp) {
+        if(temp==null || validBST == false){
+            return;
+        }
+        if(validBST){
+            inOrderTraversal(temp.leftChild);
+        }
+        if(st.size() == 0)
+            st.push(temp.value);
+        else if((Integer)st.peek() < temp.value)
+            st.push(temp.value);
+        else
+            validBST = false;
+        
+        if(validBST){
+            inOrderTraversal(temp.rightChild);
+        }
+    }
 
 }
+
+
+////////////////////////////////////////////////////////////
+///////////////  DO NOT TOUCH TEST BELOW!!!  ///////////////
+////////////////////////////////////////////////////////////
+
 
 public class BinarySearchTreeImpl {
   public static void main(String[] args) {
@@ -200,5 +244,6 @@ public class BinarySearchTreeImpl {
     System.out.println("6.5: " + (testTree.search(14) == false));
     System.out.println("6.6: " + (testTree.search(6) == false));
 
+    System.out.println(testTree.validateBST());
   }
 }
