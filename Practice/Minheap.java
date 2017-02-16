@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MinHeap;
+package Graph;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,8 @@ public class Minheap {
         storage.add(8);
         
         System.out.println(storage);
-        removePeek();
+//        removePeek();
+        remove(5);
         System.out.println(storage);
 //        System.out.println(peek());
 //        System.out.println(size());
@@ -35,8 +36,7 @@ public class Minheap {
     public static void swap(int index1, int index2){
         int temp = storage.get(index1);        
         storage.set(index1, storage.get(index2));
-        storage.set(index2, temp);
-        
+        storage.set(index2, temp);        
     }
     
     public static int peek(){
@@ -85,15 +85,16 @@ public class Minheap {
         int childIndex1 = parentIndex*2+1;
         int childIndex2 = parentIndex*2+2;
         
-        int mci;
+        int mci=0;
         if(childIndex1>size()){
             return;
         }else if(childIndex2>storage.size()-1){
-            return;
+            if(storage.get(parentIndex) > storage.get(childIndex1))
+                    mci = childIndex1;
         }else if(storage.get(childIndex1) < storage.get(childIndex2)){
-            mci = storage.get(childIndex1);
+            mci = childIndex1;
         }else{
-            mci = storage.get(childIndex2);
+            mci = childIndex2;
         }
         
         while(parentIndex < size()-1 && storage.get(parentIndex) > storage.get(mci)){
@@ -106,18 +107,29 @@ public class Minheap {
             if(childIndex1>storage.size()-1){
                 return;
             }else if(childIndex2>storage.size()-1){
-                return;
+                if(storage.get(parentIndex) > storage.get(childIndex1))
+                    mci = childIndex1;
             }else if(storage.get(childIndex1) < storage.get(childIndex2)){
-                mci = storage.get(childIndex1);
+                mci = childIndex1;
             }else{
-                mci = storage.get(childIndex2);
+                mci = childIndex2;
             }
         }
         
     }
     
     public static void remove(int val){
-    
+        int removeindex = 0;
+        if(storage.contains(val)){
+            removeindex = storage.indexOf(val);
+        }
+        else{
+            return;
+        }
+        
+        swap(removeindex, storage.size()-1);
+        storage.remove(storage.size()-1);
+        bubbleDown(removeindex);
     }
 }
 

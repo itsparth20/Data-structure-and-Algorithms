@@ -72,7 +72,7 @@ class Graph {
     private int totalEdges = 0;
     
   // Time Complexity: O(1)
-  // Auxiliary Space Complexity: 
+  // Auxiliary Space Complexity: O(1)
   public void addVertex (String id){
       Vertex vertex = new Vertex(id);
       vertices.put(id, vertex);
@@ -80,15 +80,15 @@ class Graph {
   }
 
 
-  // Time Complexity: 
-  // Auxiliary Space Complexity: 
+  // Time Complexity: O(1)
+  // Auxiliary Space Complexity: O(1)
   public Vertex getVertex (String id){      
       return vertices.get(id);
   }
 
 
-  // Time Complexity: 
-  // Auxiliary Space Complexity: 
+  // Time Complexity: O(1)
+  // Auxiliary Space Complexity: O(1)
   public void addEdge (String id1, String id2){
       Vertex v1 = vertices.get(id1);
       Vertex v2 = vertices.get(id2);
@@ -101,8 +101,8 @@ class Graph {
   }
 
 
-  // Time Complexity: 
-  // Auxiliary Space Complexity: 
+  // Time Complexity: O(1)
+  // Auxiliary Space Complexity: O(1)
   public void removeEdge (String id1, String id2){
       Vertex v1 = vertices.get(id1);
       Vertex v2 = vertices.get(id2);
@@ -126,8 +126,8 @@ class Graph {
   }
 
 
-  // Time Complexity: 
-  // Auxiliary Space Complexity: 
+  // Time Complexity: O(1)
+  // Auxiliary Space Complexity: O(1)
   public Map<Vertex, String> findNeighbors (String id){
       Vertex v1 = vertices.get(id);
       return v1.edges;
@@ -137,8 +137,8 @@ class Graph {
       forEachVertex(vertices);
   }
 
-  // Time Complexity: 
-  // Auxiliary Space Complexity: 
+  // Time Complexity: O(N*M)
+  // Auxiliary Space Complexity: O(M)
   public void forEachVertex (Map<String, Vertex> vertexs){
       
       for(Map.Entry<String, Vertex> entry : vertexs.entrySet()){
