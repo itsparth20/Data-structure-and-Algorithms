@@ -1,4 +1,4 @@
-
+package Graph;
 /**
  *
  * @author itspa
@@ -67,9 +67,9 @@ class Vertex {
 
 class Graph {
         
-    private static Map<String, Vertex> vertices= new HashMap<String, Vertex>();
-    public static int totalVertices = 0;
-    public static int totalEdges = 0;
+    private Map<String, Vertex> vertices= new HashMap<String, Vertex>();
+    private int totalVertices = 0;
+    private int totalEdges = 0;
     
   // Time Complexity: O(1)
   // Auxiliary Space Complexity: 
@@ -178,13 +178,12 @@ class Graph {
       while(queue.size()>0){
           String dequeueString = queue.remove();
           
-          Vertex dequeueVertex = vertices.get(dequeueString);
-          Map<Vertex, String> edges = dequeueVertex.edges;
+//          Vertex dequeueVertex = vertices.get(dequeueString);
+          Map<Vertex, String> edges = findNeighbors(dequeueString);
           for(Map.Entry<Vertex, String> edge : edges.entrySet()){
               if(!set.contains(edge.getValue())){          
                 queue.add(edge.getValue());
-                set.add(edge.getValue());
-                
+                set.add(edge.getValue());                
               }
           }
           vertexList.add(dequeueString);
@@ -206,8 +205,8 @@ class Graph {
       while(stack.size()>0){
           String dequeueString = stack.pop();
           
-          Vertex dequeueVertex = vertices.get(dequeueString);
-          Map<Vertex, String> edges = dequeueVertex.edges;
+//          Vertex dequeueVertex = vertices.get(dequeueString);
+          Map<Vertex, String> edges = findNeighbors(dequeueString);
           for(Map.Entry<Vertex, String> edge : edges.entrySet()){
               if(!set.contains(edge.getValue())){          
                 stack.add(edge.getValue());
@@ -220,7 +219,42 @@ class Graph {
       
       return vertexList;
     }
+  
+  public boolean graphIsTree(String start){
+      if(!vertices.containsKey(start)){
+          return false;
+      }
+      List<String> vertexList = new ArrayList<String>();        
+      Stack<String> stack = new Stack<String>();
+      Set<String> set = new HashSet<String>();
+      Map<String, String> parentNode = new HashMap<String, String>();
+      set.add(start);
+      parentNode.put(start, "-1");
+      stack.add(start);
+      while(stack.size()>0){
+          String dequeueString = stack.pop();
+          
+          Map<Vertex, String> edges = findNeighbors(dequeueString);
+          for(Map.Entry<Vertex, String> edge : edges.entrySet()){
+              if(!set.contains(edge.getValue())){          
+                stack.add(edge.getValue());
+                set.add(edge.getValue());
+                parentNode.put(edge.getValue(), dequeueString);                
+              }else{
+                  if(edge.getValue() != parentNode.get(dequeueString)){
+                      return false;
+                  }
+              }
+              
+          }
+          vertexList.add(dequeueString);
+      }
+      
+      return vertexList.size() == totalVertices;
+    }
+  
 }
+
 
 
 public class GraphProblem {
@@ -241,7 +275,23 @@ public class GraphProblem {
         graph.addEdge("F", "G");
         
         graph.printVertex();
-        System.out.println(graph.DFSearch("A"));
+        System.out.println(graph.DFSearch("A") + "\n");
+        
+        Graph graphIsTre = new Graph();
+        char[] arr1 = "01234".toCharArray();
+        for(char ch : arr1){
+            graphIsTre.addVertex(String.valueOf(ch));
+        }
+        
+        graphIsTre.addEdge("1", "0");
+        graphIsTre.addEdge("2", "0");
+        graphIsTre.addEdge("0", "3");
+        graphIsTre.addEdge("3", "4");        
+//        graphIsTre.addEdge("2", "1");s
+        
+        graphIsTre.printVertex();
+        System.out.println(graphIsTre.graphIsTree("1"));
+        
         
     }
 }
