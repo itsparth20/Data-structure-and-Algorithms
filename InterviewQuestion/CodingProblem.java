@@ -30,10 +30,14 @@ output = 3 // 01, 10, 1100
 
 input = 0011001000001111
 output = 10
+
+1111111011111111110001011
+101110001011
 */
+
 public class CodingProblem {
     public static void main(String[] args){
-    System.out.println(counting("01010"));
+    System.out.println(counting("001011"));
     
     }
     
@@ -52,6 +56,7 @@ public class CodingProblem {
                     comeAfterOne = false;
                 }
                 zeros++;
+                comeAfterZeros = true;
                 if(ones > 0){
                     ones--;
                     count++;
@@ -64,6 +69,7 @@ public class CodingProblem {
                     comeAfterZeros = false;
                 }
                 ones++;
+                comeAfterOne=true;
                 if(zeros>0){
                     zeros--;
                     count++;
@@ -73,7 +79,6 @@ public class CodingProblem {
         return count;
 
     }
-
 
 }
 
