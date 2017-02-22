@@ -8,6 +8,7 @@ package MergeKSortedArray;
 /**
  *
  * @author itspa
+	Merge K sorted array
  */
 public class MergeKArr {
     public static void main(String[] args){
