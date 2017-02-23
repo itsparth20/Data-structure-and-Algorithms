@@ -5,14 +5,9 @@
  */
 package ProsperChallenge;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -51,7 +46,7 @@ public class ScrabblePhase {
         }
     }
         static String[] FindWords(String slate, String[] dictionary) {
-        ArrayList<String> list = new ArrayList<>();
+        
         Set<String> set = new HashSet<String>();
         String copySlate = slate.toLowerCase();
         char[] chars = copySlate.toCharArray();
