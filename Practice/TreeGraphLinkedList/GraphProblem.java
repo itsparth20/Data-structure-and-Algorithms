@@ -199,24 +199,36 @@ class Graph {
       List<String> vertexList = new ArrayList<String>();        
         Stack<String> stack = new Stack<String>();
       Set<String> set = new HashSet<String>();
-      set.add(start);
+//      set.add(start);
       
       stack.add(start);
-      while(stack.size()>0){
-          String dequeueString = stack.pop();
-          
-//          Vertex dequeueVertex = vertices.get(dequeueString);
-          Map<Vertex, String> edges = findNeighbors(dequeueString);
-          for(Map.Entry<Vertex, String> edge : edges.entrySet()){
-              if(!set.contains(edge.getValue())){          
-                stack.add(edge.getValue());
-                set.add(edge.getValue());
-                
-              }
-          }
-          vertexList.add(dequeueString);
-      }
-      
+//      while(stack.size()>0){
+//          String dequeueString = stack.pop();
+//          
+//          Map<Vertex, String> edges = findNeighbors(dequeueString);
+//          for(Map.Entry<Vertex, String> edge : edges.entrySet()){
+//              if(!set.contains(edge.getValue())){          
+//                stack.add(edge.getValue());
+//                set.add(edge.getValue());
+//                
+//              }
+//          }
+//          vertexList.add(dequeueString);
+//      }
+
+        while(stack.size()>0){
+            String dequeueString = stack.pop();
+            if(!set.contains(dequeueString)){
+                set.add(dequeueString);
+            
+                Map<Vertex, String> edges = findNeighbors(dequeueString);
+                for(Map.Entry<Vertex, String> edge : edges.entrySet()){                         
+                  stack.add(edge.getValue());                  
+                }
+                vertexList.add(dequeueString);
+            }            
+        }              
+
       return vertexList;
     }
   
@@ -260,7 +272,8 @@ class Graph {
 public class GraphProblem {
     public static void main(String[] args){
         Graph graph = new Graph();
-        char[] arr = "ABCDEFG".toCharArray();
+//        char[] arr = "ABCDEFG".toCharArray();
+        char[] arr = "ABCDEFGHS".toCharArray();
         for(char ch : arr){
             graph.addVertex(String.valueOf(ch));
         }
@@ -273,6 +286,17 @@ public class GraphProblem {
         graph.addEdge("D", "E");
         graph.addEdge("D", "G");
         graph.addEdge("F", "G");
+        
+//        graph.addEdge("A", "B");
+//        graph.addEdge("A", "S");
+//        graph.addEdge("S", "C");
+//        graph.addEdge("S", "G");
+//        graph.addEdge("C", "D");
+//        graph.addEdge("C", "E");
+//        graph.addEdge("C", "F");
+//        graph.addEdge("G", "F");
+//        graph.addEdge("G", "H");
+//        graph.addEdge("E", "H");
         
         graph.printVertex();
         System.out.println(graph.DFSearch("A") + "\n");
