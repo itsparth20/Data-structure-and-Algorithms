@@ -1,0 +1,15 @@
+Problem: Grouping Characture
+
+Write method that tests if the grouping character [], (), {} and <> in a string are balanced, any group that is open must be closed with a corrosponding characters.
+
+Grouping characters can be escaped by using a backslash character. The Character following a backslash character will be ignored, even if it is a grouping character.
+
+In addition to the standard grouping characters string delimiters " and ' are also supported inside a string, aa grouping characters are automatically escaped and should be ignored. String delimiters must be balanced in the same ways as others grouping characters -- each ' or " must be closed with a corresponding ' or ".
+
+() true
+([)] false
+( false
+(abc) true
+"{" true
+'abc' true
+'<\' false
