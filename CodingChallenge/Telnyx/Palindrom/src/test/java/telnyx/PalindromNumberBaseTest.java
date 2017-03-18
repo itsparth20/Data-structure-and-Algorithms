@@ -55,5 +55,28 @@ public class PalindromNumberBaseTest {
         // assert statements
 		assertEquals(-1, palindromicNumberBaseObj.numberBase(-1));                       
     }
-		
+	
+	@Test
+	public void palindromEvenTrueTest(){
+		// assert statements
+		assertEquals(true, palindromicNumberBaseObj.checkPalindrome("22"));
+	}
+	
+	@Test
+	public void palindromOddTrueTest(){
+		// assert statements
+		assertEquals(true, palindromicNumberBaseObj.checkPalindrome("121"));
+	}
+	
+	@Test
+	public void palindromEvenFalseTest(){
+		// assert statements
+		assertEquals(false, palindromicNumberBaseObj.checkPalindrome("21"));
+	}
+	
+	@Test
+	public void palindromOddFalseTest(){
+		// assert statements
+		assertEquals(false, palindromicNumberBaseObj.checkPalindrome("123"));
+	}
 }

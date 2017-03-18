@@ -31,24 +31,51 @@ public class PalindromicNumberBase {
 
 	}
 
-	public int numberBase(int n) {
-		if(n<0){						
+	public int numberBase(int number) {
+		if(number<0){						
 			return -1;			
 		}
     	try{	        
-	        for(int i = 2 ; i <= 1000; i++){    
-	        	//Convert int to base
-                String NumberInBase = Integer.toString(n, i);
-                //reverse number
-                String NumberInBaseReverse = new StringBuffer(NumberInBase).reverse().toString();
-                //if both string is palindrom then return base
-                if(NumberInBase.equals(NumberInBaseReverse)){
+	        for(int i = 2 ; i <= 1000; i++){    	        	              
+	        	StringBuffer sb = new StringBuffer();
+	        	int reminder = 0;	
+	        	
+	        	//create temp number to find base number
+	        	int num = number;
+	        	
+	        	//This will create number with base i
+	        	while(num >= i){
+	        		reminder = num%i;
+	        		num = num / i;
+	        		sb.append(reminder);	        		
+	        	}	        
+	        	sb.append(num);
+	        	
+	        	boolean isPalindrom = checkPalindrome(sb.toString());
+                                
+                //if number is palindrome then return base value.
+                if(isPalindrom){
                     return i;                        
-                }
+                }                
             }                	        
     	}catch(Exception e){
     		System.out.println("Their is some problem. Please try again after some time");    		
     	}         
     	return -1;
     }
+
+	//Palindrom function
+	public boolean checkPalindrome(String num) {
+		int i = 0;
+		int j = num.length()-1;
+		while(i<=j){
+			if(num.charAt(i) == num.charAt(j)){
+				i++;
+				j--;
+			}else{
+				return false;
+			}
+		}
+		return true;
+	}
 }
