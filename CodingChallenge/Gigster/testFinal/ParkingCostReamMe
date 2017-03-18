@@ -1,0 +1,20 @@
+Find total cost of the ticket in parking lot.
+
+You have given starting time and ending time.
+
+	The entrance fee of the car parking lot is 2
+	The first full or partial hour costs 3.
+	Each successive full or partial hour (after the first) costs 4
+	
+Input is in this formate
+	"HH:MM" (Where HH is between 0 and 23 and MM is between 0 and 59).
+	
+Write a function
+	public int solution(String E, String L);
+	
+Example
+
+Entry Time: 10:00;
+Exit time: 13:21;
+
+Output should be 17 (2+3+(3*4))

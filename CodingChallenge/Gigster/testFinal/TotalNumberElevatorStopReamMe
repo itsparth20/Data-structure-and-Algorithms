@@ -1,0 +1,21 @@
+The goal is to count the total number of times that the elevator stops.
+
+	M is total floors
+	X is maximum capacity
+	Y is Weight limit
+	N total number of people at ground floor, stading in a queue for the elevator.
+	A[k] person weight
+	B[k] target floor.
+	
+People continue to enter the elevator, in the order of their position in the queue for as long as there is room for them. Then elevator goes up and stops at every selected floor, and finally return to ground floor. This process is repeated until there are no more people in the queue. 
+
+For Example 
+
+	input
+		M = 5, X =2, Y = 200, A[] = {60, 80, 40}, B[] = {2, 3, 5}
+	output
+		5
+	Explain:
+		Elevator will take the first two passengers together, stop at the 2nd and 3rd floors, then return to the ground floor. Then, it will take the last passenger, stop at the 5th floor and return to the ground floor. In total, the elevator will stor five times, Note that this number includes the last stop at the ground floor. 
+	
+
