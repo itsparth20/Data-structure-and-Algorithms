@@ -1,0 +1,21 @@
+Suppose we want to moniter how locks are used in out system. As the first step, we log moment of acquire and release for each lock in the following format:
+	ACQUIRE X
+	RELEASE X
+	
+Where X is some integer ID (1<=X<=1,000,000) of the lock.
+
+All locks must me release in the reverse order of acquiring them; for example, this is correct event sequence:
+	1. ACQUIRE 650
+	2. ACQUIRE 85
+	3. RELEASE 85
+	4. ACQUIRE 90
+	5. RELEASE 90
+	6. RELEASE 650
+	
+Write function that, given a list of N locks acquire and release events (counting from 1), checks if there were any problem (acquiring-releasing order Violation, dangling acquiring lock, acquiring lock twice or releasing a free lock) and if so, tells the earliest time that could be detected. Note that there is no limit on how many nested lock may be acquired at any given moment.
+More formally, you are given an array of string where each string is ACQUIRE X or RELEASE X where all's X is integer.
+
+Return:
+	0 if there were no lock related problem even after program termination
+	N+1 if only issue after program termination were dangling acquiring lock
+	K, in case event number K violated any of the principle (acquiring-releasing order Violation, dangling acquiring lock, acquiring lock twice or releasing a free lock) 

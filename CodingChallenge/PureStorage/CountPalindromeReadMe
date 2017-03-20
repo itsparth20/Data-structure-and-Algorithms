@@ -1,0 +1,13 @@
+Count Palindrome
+	String S = hellolle
+	Palindrome strings are:
+		1. ellolle
+		2. ll, ll
+		3. lol, lloll
+		4. Each letter can be consider palindrome - all 8 of them
+	Output Should be 8.
+	
+	Example 2:
+	
+	S : wowpurerockes
+	Output: 14 (each letter + "wow" + "rer")
