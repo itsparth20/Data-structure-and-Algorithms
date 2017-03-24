@@ -15,7 +15,7 @@ public class TotalNumberElevatorStop {
         
         while(i<A.length){
         	Set<Integer> floor = new HashSet<Integer>();
-        	while(i<A.length && peopleEnter <= X && A[i]+totalWeight <= Y){
+        	while(i<A.length && peopleEnter < X && A[i]+totalWeight <= Y){
         		peopleEnter++;
         		totalWeight += A[i];
         		floor.add(B[i]);
@@ -25,7 +25,7 @@ public class TotalNumberElevatorStop {
         	peopleEnter = 0;
         	totalWeight = 0;
         }        
-        return stops;
+        return stops+1;
     }
 
 }
