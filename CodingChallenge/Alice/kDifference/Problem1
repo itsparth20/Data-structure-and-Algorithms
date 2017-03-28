@@ -1,0 +1,14 @@
+K-Difference
+
+Complete the function:
+	1. Array of N positive distinct integer A.
+	2. Integer k.
+The function must return integer denoting the total number of pairs of element (Ai,Aj), in array A where Ai+k = Aj
+
+Example
+Input:
+A = 1 5 3 4 2 2
+K = 2
+
+Output:
+3

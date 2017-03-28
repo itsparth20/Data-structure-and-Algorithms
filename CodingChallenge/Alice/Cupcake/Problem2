@@ -1,0 +1,31 @@
+CupCake Feast - Problem 2
+
+Parth loves going to his favorite bakery, Zillycakes, with N dollars to buy cupcakes. Each cupcake has a cost of C dollars, and the store has a promotion where
+they give you 1 free cupcake for every m cupcake wrappers you trade in.
+
+For example, if M = 2 and Parth has N = 4 dollars that he uses to buy 4 cupcakes at C = 1 dollar apiece, he can trade in the 4 wrappers to buy 2 more cupcakes. 
+Now he has 2 more wrappers that she can trade in for 1 more cupcake. Because he only has 1 wrapper left at this point and 1 < m, he was only able to eat a total
+of 7 cupcakes.
+
+Input Formate
+Array of string that contain value as "N C M".
+
+Output:
+How many cupcake can be bought.
+
+Example:
+Input: 
+{
+"10 2 5",
+"12 4 4",
+"6 2 2",
+"8 4 2",
+"7 2 3"
+}
+
+Output:
+6
+3
+5
+3
+4

@@ -1,0 +1,26 @@
+Minimum Weighted Path in Directed Graph
+
+We define a directed graph, G, such that:
+	The total number of nodes in the graph is N
+	The nodes are numbered sequentially as 1,2,3,...N
+	The total number of edges in graph is M
+	Each edge connects two distinct nodes (i.e no edge connects a node to itself).
+	The weight of the edge I connecting nodes g_from[i] and g_to[i] is g_weight[i]
+	The edge conneting nodes g_from[i] and g_to[i] is directed. In other words, it describes a path only in the direction g_from[i] -> g_to[i].
+	
+We define the weight of a path from node 1 to node N to be the sum of all edges traversed on the path.
+
+You must find the path from node 1 to node N having the minimum possible weight. The function must return an integer denoting the minimum possible 
+weight of any path from node 1 to node N or -1 if there are no paths.
+
+Input Format
+First line contains two space separated integers describing the respective values of N and M.
+Each line I of the M subsequent lines contains three space-separated integers describing the respective values of g_from[i], g_to[i] and g_weight[i] 
+for each edge.
+
+Input
+2 1
+1 2 3
+
+output
+3
