@@ -11,7 +11,7 @@
 public class OnePlus {
     public static void main(String[] args){
         int a[] = {9,9,9};
-        int b[] = addOne(a).clone();
+        System.out.println(Arrays.toString(addOne(a)));
     }
 
     private static int[] addOne(int[] a) {

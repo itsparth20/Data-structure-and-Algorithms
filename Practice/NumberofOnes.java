@@ -37,6 +37,9 @@ public class NumberofOnes {
             return count;
         }
         int index = search(a);
+		if(index == -1){
+			return -1;
+		}
         count = len-index+1;
         return count;
     }
