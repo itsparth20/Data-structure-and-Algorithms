@@ -1,0 +1,10 @@
+unicomp6.unicomp.net - - [01/Jul/1995:00:00:06 -0400] "GET /shuttle/countdown/ HTTP/1.0" 200 3985
+burger.letters.com - - [01/Jul/1995:00:00:06 -0400] "GET /shuttle/countdown/ HTTP/1.0" 200 3985
+burger.letters.com - - [01/Jul/1995:00:00:02 -0400] "GET /shuttle/abc/ HTTP/1.0" 200 0
+burger.letters.com - - [01/Jul/1995:00:00:02 -0400] "GET /shuttle/abc/ HTTP/1.0" 200 0
+d104.aa.net - - [01/Jul/1995:00:00:02 -0400] "GET /shuttle/abc/ HTTP/1.0" 200 0
+unicomp6.unicomp.net - - [01/Jul/1995:00:00:06 -0400] "GET /shuttle/countdown/ HTTP/1.0" 2001 385
+unicomp6.unicomp.net - - [01/Jul/1995:00:00:06 -0400] "GET /shuttle/countdown/ HTTP/1.0" 2001 385
+unicomp6.unicomp.net - - [01/Jul/1995:00:00:06 -0400] "GET /shuttle/countdown/ HTTP/1.0" 2001 385
+d104.aa.net - - [01/Jul/1995:00:00:02 -0400] "GET /shuttle/abc/ HTTP/1.0" 200 0
+d104.aa.net - - [01/Jul/1995:00:00:02 -0400] "GET /shuttle/abc/ HTTP/1.0" 200 0
