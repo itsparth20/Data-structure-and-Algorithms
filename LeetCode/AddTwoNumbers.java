@@ -32,51 +32,22 @@ public class AddTwoNumbers {
 	}
 
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode head = null;
-        ListNode pre = null;
+		ListNode prev = new ListNode(0);
+        ListNode head = prev;
         int carry = 0;
-        while(l1!=null && l2!= null){
+        while (l1 != null || l2 != null || carry != 0) {
+            ListNode cur = new ListNode(0);
+            int sum = ((l2 == null) ? 0 : l2.val) + ((l1 == null) ? 0 : l1.val) + carry;
+            cur.val = sum % 10;
+            carry = sum / 10;
+            prev.next = cur;
+            prev = cur;
             
-            int sum = l2.val+l1.val+carry;
-            ListNode newNode = new ListNode(sum%10);
-            if(head==null){
-                head = newNode;
-                pre = newNode;
-            }else{
-                pre.next = newNode;
-                pre = newNode;
-            }
-            carry = sum/10;
-            l1 = l1.next;
-			l2 = l2.next;
+            l1 = (l1 == null) ? l1 : l1.next;
+            l2 = (l2 == null) ? l2 : l2.next;
         }
-        while(l1!=null){
-            int sum = l1.val+carry;
-            ListNode newNode = new ListNode(sum%10);
-            pre.next = newNode;
-			pre = newNode;
-
-			carry = sum/10;
-            l1 = l1.next;
-        }
-        
-        while(l2!=null){
-            int sum = l2.val+carry;
-            ListNode newNode = new ListNode(sum%10);
-            pre.next = newNode;
-			pre = newNode;
-			carry = sum/10;
-            l2 = l2.next;
-        }
-        if(carry >0){
-            ListNode newNode = new ListNode(carry);
-            pre.next = newNode;
-            pre = newNode;
-        }
-        pre.next = null;
-            
-        return head;
-    }
+        return head.next;    
+	}
 }
 
 class ListNode {
