@@ -1,30 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package LeetCode;
+package practiceProblem.leetcode;
 
-/**
- *
- * @author itspa
+import java.util.Arrays;
+
+/*
+ * Write a function to find the longest common prefix string amongst an array of strings.
  */
+
+// 14. Longest Common Prefix
+// More Description: https://leetcode.com/problems/longest-common-prefix/#/description
+
+
 public class LongestCommonPrefix {
-    public String longestCommonPrefix(String[] strs) {
-    if (strs.length == 0) return "";
-    String prefix = strs[0];
-    for (int i = 1; i < strs.length; i++){
-//        System.out.print(strs[i]);
-//        System.out.println(" "+prefix);
-//        System.out.println(strs[i].indexOf(prefix));
-        
-        while (strs[i].indexOf(prefix) != 0) {
-            System.out.println("1. "+prefix);
-            prefix = prefix.substring(0, prefix.length() - 1);
-            if (prefix.isEmpty()) return "";
-        }
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public static String longestCommonPrefix(String[] strs) {
+        if(strs.length == 0) return "";
+        Arrays.sort(strs);                
+        String first = strs[0];
+        String last = strs[strs.length-1];
+        int endIndex = 0;
+        while(endIndex < first.length() && first.charAt(endIndex) == last.charAt(endIndex)){
+        	endIndex++;
+        }        
+        return first.substring(0, endIndex);
     }
-    return prefix;
-    }
-    
 }
