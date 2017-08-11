@@ -29,9 +29,7 @@ public class CountDigitAndCharacters {
 	}
 
 	private static void usingStreamApi(String input) {
-		// TODO Auto-generated method stub
-		System.out.println(input.chars().filter(c -> c >= 48 && c <= 57).count());
-		System.out.println(input.chars().filter(c -> ( c >= 65 && c <= 90) || ( c >= 97 && c <= 122)).count());
-	}
-	
+		System.out.println("Using Stream API: ");
+		System.out.println(input.chars().filter(c -> c >= 48 && c <= 57).count() + "\n" + input.chars().filter(c -> ( c >= 65 && c <= 90) || ( c >= 97 && c <= 122)).count());
+	}	
 }
