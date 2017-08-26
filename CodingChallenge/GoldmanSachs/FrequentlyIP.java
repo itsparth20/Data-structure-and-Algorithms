@@ -12,6 +12,7 @@ package GoldmanSachs;
  */
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 class Solution {
 
@@ -27,29 +28,20 @@ class Solution {
    * Log file entries are passsed as an array.
    */
 
-  public static Set<String> findTopIpaddress(String[] lines) {
-    // TODO: Implement solution
-    Map<String, Integer> ipMap = new HashMap<>();
-    Set<String> ips = new HashSet<>();
+  public static Set<String> findTopIpaddress(String[] lines) {    
+    Map<String, Integer> ipMap = new HashMap<>();   
     int max = 0;
     for(String ip : lines){
       String ipAddress = ip.substring(0, ip.indexOf(" "));
-      if(ipMap.containsKey(ipAddress)){
-        ipMap.put(ipAddress, ipMap.get(ipAddress)+1);        
-        max = Math.max(max,ipMap.get(ipAddress));
-      }else{
-        ipMap.put(ipAddress, 1);
-        max = Math.max(max,1);
-      }      
+      ipMap.putIfAbsent(ipAddress, 0);
+      ipMap.put(ipAddress, ipMap.get(ipAddress)+1);
+      max = Math.max(max,ipMap.get(ipAddress));           
     }
     
-    for(Map.Entry<String, Integer> entry : ipMap.entrySet()){
-      if(entry.getValue() == max)
-        ips.add(entry.getKey());
-    }
-   // System.out.println(max);
-   // ipMap.forEach((k,v) -> System.out.println(k + " " + v));
-    System.out.println(ips);
+    //Using Java 8
+    final int maxx = max;
+    Set<String> ips = ipMap.keySet().stream().filter(i -> ipMap.get(i) == maxx).collect(Collectors.toSet());
+    
     return ips;
   }
   
@@ -78,19 +70,10 @@ class Solution {
       }
     }
     System.out.println("Test passed");
-    return true;
-    // if (result.get(1).equals("10.0.0.1") && result.get(0).equals("10.0.0.2")) {
-    //   System.out.println("Test passed");
-    //   return true;
-    // } else {
-    //   System.out.println("Test failed");
-    //   return false;
-    // }  
+    return true;  
   }
   
   public static void main(String[] args) {
-    doTestsPass();
-    
+    doTestsPass();    
   }
-  
 }
