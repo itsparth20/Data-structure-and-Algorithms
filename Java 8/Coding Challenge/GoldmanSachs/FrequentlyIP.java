@@ -33,7 +33,7 @@ class Solution {
 		   .map(ip -> ip.substring(0, ip.indexOf(" ")))
 		   .collect(Collectors
 				   .groupingBy(x -> x, Collectors.counting()));
-   final long max = ipMap.values().stream().collect(Collectors.summarizingLong(Long::longValue)).getMax();
+   final long max = ipMap.values().stream().mapToLong(Long::longValue).max().getAsLong(); 
    Set<String> ips = ipMap.keySet().stream().filter(i -> ipMap.get(i) == max).collect(Collectors.toSet()); 
    return ips;
   }
