@@ -82,5 +82,20 @@ public class ToeplitzMatrix {
 		
 		return true;
 	}
+	
+	//Easy Way
+	public static boolean solution(int[][] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr.length; j++) {
+				if (i - 1 >= 0 && j - 1 >= 0) {
+					if (arr[i - 1][j - 1] != arr[i][j]) {
+						return false;
+					}
+				}
+			}
+		}
+
+		return true;
+	}
 
 }
