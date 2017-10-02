@@ -1,1 +1,0 @@
-select Departments.dept_name, count(*) from Departments, students where Departments.dept_id = students.dept_id group by Departments.dept_name order by count(*) desc, Departments.dept_name asc 
