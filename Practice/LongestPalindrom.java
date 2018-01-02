@@ -1,28 +1,10 @@
-package practiceProblem;
-
-/*
-Longest Palindrome
-Given a string, determine the longest substring that is a palindrome 
-
-Input: A string
-Output: A string which is the longest palindrome
-Example
-Input: ”mydadlikestodriveracecars”
-Output: “racecar”
-*/
-
-public class LongestPalindrom {
-
-	public static void main(String[] args) {
+class Solution {
+    public String longestPalindrome(String s) {
 		// TODO Auto-generated method stub
-		String s = "mydadlikestodriveracecars";
-		System.out.println(longestPalindrom(s));
-	}
-
-	private static int longestPalindrom(String s) {
-		// TODO Auto-generated method stub
+        if (s.length() == 1) return s;
 		int max = 0;
 		String palindrom = "";
+        palindrom = String.valueOf(s.charAt(0));
 		for(int i = 0; i< s.length(); i++){
 			
 			//Odd
@@ -53,8 +35,7 @@ public class LongestPalindrom {
 					break;
 			}
 		}
-		System.out.println(palindrom);
-		return max;
+		//System.out.println(palindrom);
+		return palindrom;
 	}
-
 }
