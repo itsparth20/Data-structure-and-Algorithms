@@ -1,6 +1,8 @@
 # csv file path
-INPUT_CSV_FILE = "/Users/prince.patel/Desktop/geocode_gnndfed/input.csv"
-OUTPUT_CSV_FILE = "/Users/prince.patel/Desktop/geocode_gnndfed/output.csv"
+INPUT_CSV_FILE = "Z:\\python\\googleMapAPI\\gnndfed_geo.csv"
+OUTPUT_CSV_FILE = "Z:\\python\\googleMapAPI\\output.csv"
+ERROR_CSV_FILE = "Z:\\python\\googleMapAPI\\map_error1.csv"
+TEMP_OUTPUT_CSV_FILE = "Z:\\python\\googleMapAPI\\temp_output.csv"
 
 # 1 based address column index
 ADDRESS_INDEX = 5

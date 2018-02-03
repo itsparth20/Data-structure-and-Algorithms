@@ -3,6 +3,7 @@ import queue
 import csv
 import googlemaps
 import config
+import os
 
 """
 Replace last occurence of a string within a string
@@ -46,6 +47,12 @@ def getShortNameFromResults(result, name):
 	except Exception as e:
 		print("Geocode error: " + str(e))
 		return None
+		
+def checkNone(data, flag):
+	if flag:
+		return flag
+	else:
+		return False if data else True
 
 def geocoding_worker():
 	global row_counter
@@ -58,37 +65,53 @@ def geocoding_worker():
 			row = geocoding_queue.get(True, 5)
 
 			latitude = longitude = None
-
+			none = False
 			try:
-				address = row[config.ADDRESS_INDEX - 1]				
+				address = row[config.ADDRESS_INDEX - 1]	
+				none = checkNone(address, none)	
 				# remove County from address, it's failing google maps
 				result = gclient.geocode(rreplace(address, 'County', '', 1))				
+				none = checkNone(result, none)
 				location = geocode(result)
+				none = checkNone(location, none)
 				street_number = getDataFromResults(result,'street_number')
+				
 				political = getDataFromResults(result,'locality')
+				
 				administrative_area_level_2 = getDataFromResults(result,'administrative_area_level_2')
+				
 				administrative_area_level_1 = getDataFromResults(result,'administrative_area_level_1')
+				
 				administrative_area_level_1_sortName = getShortNameFromResults(result,'administrative_area_level_1')
+				
 				political = getDataFromResults(result,'locality')
+				
 				route = getDataFromResults(result,'route')
+				
 				postal_code = getDataFromResults(result,'postal_code')
+				
 				country = getDataFromResults(result,'country')
-
+				latitude = None
+				longitude = None
 				# latitude and longitude key names are untouched, same as returned by google maps
 				if location is not None and "lat" in location and "lng" in location:
-					col_count = len(row)
 					latitude = float("{0:.6f}".format(location["lat"]))
 					longitude = float("{0:.6f}".format(location["lng"]))
-					row[col_count - 10] = latitude					
-					row[col_count - 9] = longitude
-					row[col_count - 8] = str(street_number)
-					row[col_count - 7] = route
-					row[col_count - 6] = political
-					row[col_count - 5] = administrative_area_level_2
-					row[col_count - 4] = administrative_area_level_1
-					row[col_count - 3] = administrative_area_level_1_sortName
-					row[col_count - 2] = str(postal_code)
-					row[col_count - 1] = str(country)
+				else:
+					none = True
+					
+				col_count = len(row)		
+				
+				row[col_count - 10] = latitude					
+				row[col_count - 9] = longitude
+				row[col_count - 8] = str(street_number)
+				row[col_count - 7] = route
+				row[col_count - 6] = political
+				row[col_count - 5] = administrative_area_level_2
+				row[col_count - 4] = administrative_area_level_1
+				row[col_count - 3] = administrative_area_level_1_sortName
+				row[col_count - 2] = str(postal_code)
+				row[col_count - 1] = str(country)
 			except IndexError:
 				pass				
 
@@ -98,7 +121,8 @@ def geocoding_worker():
 					"{} | {}".format(str(latitude), str(longitude)) if latitude and longitude else "FAILED"))
 				
 				row_counter += 1
-				ocsv_writer.writerow(row)
+				
+				ecsv_writer.writerow(row) if none else ocsv_writer.writerow(row)
 
 			geocoding_queue.task_done()
 		except queue.Empty:
@@ -115,6 +139,7 @@ try:
 	threads = []
 
 	ocsv_writer = None
+	ecsv_writer = None
 	row_counter = 1
 	ocsv_lock = threading.Lock()
 
@@ -124,15 +149,17 @@ try:
 		t.start()
 		threads.append(t)
 	
-	with open(config.INPUT_CSV_FILE, "r") as icsv, open(config.OUTPUT_CSV_FILE, "w", newline='') as ocsv:
+	with open(config.INPUT_CSV_FILE, "r") as icsv, open(config.TEMP_OUTPUT_CSV_FILE, "w", newline='') as ocsv, open(config.ERROR_CSV_FILE, "w", newline='') as ecsv:
 		reader = csv.reader(icsv, delimiter=",")
 		ocsv_writer = csv.writer(ocsv, delimiter=",")
+		ecsv_writer = csv.writer(ecsv, delimiter=",")
 
 		# read from input csv line by line
 		for i, row in enumerate(reader):
 			# Write header row
 			if i == 0:
 				ocsv_writer.writerow(row)
+				ecsv_writer.writerow(row)
 			elif len(row) > 0:
 				geocoding_queue.put(row)
 
@@ -142,7 +169,7 @@ try:
 		# wait for the thread to complete
 		for t in threads:
 			t.join()
-
 		print("Complete")
+	os.rename(config.TEMP_OUTPUT_CSV_FILE, config.OUTPUT_CSV_FILE)
 except Exception as e:
 	print(e)
