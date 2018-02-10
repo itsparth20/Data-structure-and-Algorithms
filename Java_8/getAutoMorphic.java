@@ -14,12 +14,8 @@ class AutoMorPhicProgram {
 		System.out.println(getAutoMorphic(1,1000));
 	} 
 	public static List<Integer> getAutoMorphic(int start, int end) {
-		return IntStream.range(start, end+1).filter(x ->{
-			int sqr = x*x;
-			String no1 = String.valueOf(x);
-			String no2 = String.valueOf(sqr);
-			return no2.endsWith(no1);
-		}).mapToObj(x -> x).collect(Collectors.toList());	
+		return IntStream.range(start, end + 1).filter(x -> String.valueOf(x * x).endsWith(String.valueOf(x)))
+				.mapToObj(x -> x).collect(Collectors.toList());
 	}
 	
 	@Test
