@@ -1,0 +1,7 @@
+First line: #rows, #columns, optional delay, optional chamber size. Other lines: F-free, N-noFly, W-tower, T-thief, H-highAlitude, I-Initial, C-Customer
+5 5
+F F I F F
+ F F F F F
+F F F F F
+ F F F F F 
+F F F F F 
