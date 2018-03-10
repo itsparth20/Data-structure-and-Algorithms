@@ -1,0 +1,2 @@
+Note: The main disadvantage of providing only static factory methods is that classes without public or protected constructors cannot be subclassed. 
+Reason is, when parent class has private constructor and when child class extend it and create a public constructor then child class constructor call super class constructor but super class does not have public or protected constructor so it is not accessible outside the class and it will give compile time exception.
