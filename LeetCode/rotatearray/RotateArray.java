@@ -26,6 +26,17 @@ public class RotateArray {
             end--;
         }
     }
+    
+    //Better performance
+    public void rotateArrayElement(int[] nums, int k) {
+        int len = nums.length;
+        k = k % len;
+        if (k == 0) return;
+        int[] tmp = new int[k];
+        System.arraycopy(nums, len-k, tmp, 0, k);
+        System.arraycopy(nums, 0, nums, k, len-k);
+        System.arraycopy(tmp, 0, nums, 0, k);
+    }
 
     @Test
     public void testRotate() {
