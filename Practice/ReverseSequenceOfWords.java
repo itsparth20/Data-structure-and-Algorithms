@@ -1,44 +1,47 @@
 package practiceProblem;
 
 public class ReverseSequenceOfWords {
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String str = "Hey how are you doing";
-		System.out.println(reverseSequenceOfWord(str));
+		String str = "Hey Love";
+		ReverseSequenceOfWords obj = new ReverseSequenceOfWords();
+		System.out.println(obj.reverseSequenceOfWord(str));
 	}
 
-	private static char[] reverseSequenceOfWord(String str) {
-		// TODO Auto-generated method stub
+	private char[] reverseSequenceOfWord(String str) {
+
 		char[] strArr = str.toCharArray();
-		int index = 0;
-		
-		while(index <= strArr.length/2){
-			char temp = strArr[index];
-			strArr[index] = strArr[strArr.length-1-index];
-			strArr[strArr.length-1-index] = temp;
-			index++;
-		}
-		int indexLeft = 0;
-		int indexRight = 0;  
-		index = -1;
+		int start = 0;
+		int last = strArr.length-1;
+		reverseArray(strArr, start, last);
+		start = 0;
+		last = 0;
+		int index = -1;
 		while(index < strArr.length){
-			indexLeft = ++index;
+			start = ++index;
 			while(index < strArr.length && strArr[index] != ' '){
 				index++;
-				
 			}
-			indexRight = index-1;
-			while(indexLeft <= indexLeft+(indexRight-indexLeft)/2){
-				char temp = strArr[indexLeft];
-				strArr[indexLeft] = strArr[indexRight];
-				strArr[indexRight] = temp;
-				indexLeft++;
-				indexRight--;
-			}
+			last = index-1;		
+			reverseArray(strArr, start, last);
 		}
-		
 		return strArr;
+	}
+	
+	private void reverseArray(char[] strArr, int start, int last) {
+		while(start < last){
+			char temp = strArr[start];
+			strArr[start] = strArr[last];
+			strArr[last] = temp;
+			start++;
+			last--;
+		}
+	}
+
+	@Test
+	public void testReverseSequenceOfWord() {
+		ReverseSequenceOfWords obj = new ReverseSequenceOfWords();
+		assertEquals("Love Hey", new String(obj.reverseSequenceOfWord("Hey Love")));
+		assertEquals("Mitt am I", new String(obj.reverseSequenceOfWord("I am Mitt")));
 	}
 
 }
