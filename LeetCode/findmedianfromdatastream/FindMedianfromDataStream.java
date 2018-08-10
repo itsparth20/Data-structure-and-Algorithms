@@ -57,3 +57,30 @@ class MedianFinder {
         return size%2==0 ? value : numbers.get(index);
     }
 }
+
+/*
+//effective solution by using two queue and maintain half half in both queue.
+
+class MedianFinder {
+
+    private Queue<Long> small;
+    private Queue<Long> large;
+    public MedianFinder() {
+        small = new PriorityQueue();
+        large = new PriorityQueue();
+    }
+
+    public void addNum(int num) {
+        large.add((long)num);
+        small.add(-(long)large.poll());
+        if(large.size() < small.size()){
+            large.add(-small.poll());
+        }
+
+    }
+    private int index;
+    public double findMedian() {
+        return large.size()>small.size() ? large.peek() : (large.peek() - small.peek())/2.0;
+    }
+}
+ */
