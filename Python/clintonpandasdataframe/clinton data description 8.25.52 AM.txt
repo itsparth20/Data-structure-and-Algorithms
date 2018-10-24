@@ -1,0 +1,22 @@
+Dataset:  clinton1.dat
+
+Source: U.S. Census Bureau
+
+Description: County level results for percent voting for Bill Clinton
+in 1992 Presidential Election and Demographic variables.
+
+Variables/Columns
+
+County Name  1-38 
+Percent voting for Clinton in 1992   40-45 	
+Median Age    49-52 	
+Mean Savings($)  56-61	
+PerCapita Income  ($)  65-69	  
+Percent in Poverty    73-77	
+Percent Veterans  81-85       
+Percent Female        89-94
+Population Density    98-105
+Percent in Nursing Homes   109-114  
+Crime Index (Per capita)   118-123
+
+
